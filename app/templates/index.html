@@ -1,0 +1,55 @@
+{%extends 'base.html'%}
+
+{%block app_content%}
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+            <div class="mx-auto card text-white bg-dark mb-3" style="max-width: 18rem;">
+                <div class="card-header">My First App</div>
+                <div class="card-body">
+                    <h5 class="card-title">Stock Backtester</h5>
+                    <p class="card-text">An app which backtest a stock using implemented entry and exit strategies.</p>
+                    <p class="card-text">The data used was from 2019-Jan to 2020-Dec.</p>
+                    <a href="{{url_for('backtester')}}" class="btn btn-secondary">Go to Project</a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="mx-auto card text-white bg-dark mb-3" style="max-width: 18rem;">
+                <div class="card-header">My Second App</div>
+                <div class="card-body">
+                    <h5 class="card-title">Stock Screener</h5>
+                    <p class="card-text text-muted">An app which screens the stocks from implemented filters.</p>
+                    <p class="card-text text-muted">To be implemented.</p>
+                    <a href="{{url_for('screener')}}" class="btn btn-secondary">Go to Project</a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="mx-auto card text-white bg-dark mb-3" style="max-width: 18rem;">
+                <div class="card-header">My Third App</div>
+                <div class="card-body">
+                    <h5 class="card-title">Trading Journal</h5>
+                    <p class="card-text text-muted">An app which logs the date of entry and exit together with the prices of the stock.</p>
+                    <p class="card-text text-muted">To be implemented.</p>
+                    <a href="{{url_for('journal')}}" class="btn btn-secondary">Go to Project</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+            <div class="mx-auto card text-white bg-dark mb-3" style="max-width: 18rem;">
+                <div class="card-header">My Fourth App</div>
+                <div class="card-body">
+                    <h5 class="card-title">The best app</h5>
+                    <p class="card-text">behold...</p>
+                    <a href="{{url_for('hello')}}" class="btn btn-secondary">Go to Project</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+
+{%endblock%}

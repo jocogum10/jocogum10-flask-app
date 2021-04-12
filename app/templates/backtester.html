@@ -1,0 +1,97 @@
+{%extends 'base.html'%}
+
+{%block app_content%}
+<div class="container">
+    <div class="row g-2">
+        <!-- first column -->
+        <div class="col-md">
+            <h4>Select</h4>
+            <form method="POST">
+                <div class="form-floating">
+                    <select name="stock_selected" class="form-select" id="stock-selected" aria-label="Floating label select example">
+                        {% for stock in list_stocks %}
+                            <option value="{{ stock }}"{% if stock == current_stock %}selected="selected"{% endif %}>{{ stock }}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="stock-selected">Stocks</label>
+                </div>
+                <div class="form-floating">
+                    <select name="strategy_selected" id="strategy-name" class="form-select"  aria-label="Floating label select example">
+                        <option value="cross_up"{% if strategy == 'cross_up' %}selected="selected"{% endif %}>MA20 - MA 50 Cross Up</option>
+                    </select>
+                    <label for="strategy-name">Strategies</label>
+                </div>
+                
+                    <button type="submit" class="btn btn-primary">Submit</button>
+
+            </form>
+        </div>
+        <!-- end of first column -->
+        <!-- second column -->
+        <div class="col-md">
+            <h4>Result</h4>
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Strategy Summary
+                    </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        {% if request.method == 'POST' %}
+                            Entry:
+                            {% for i in strategy_entry %}
+                            <ul>
+                                <li>{{i}}</li>
+                            </ul>
+                            {% endfor %}
+                            Exit:
+                            {% for j in strategy_exit %}
+                            <ul>
+                                <li>{{j}}</li>
+                            </ul>
+                            {% endfor %}
+                        {%else%}
+                        No Stock Selected
+                        {%endif%}
+                    </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Result
+                    </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        {% if request.method == 'POST' %}
+                        <strong>Gain: {{gain}}%</strong>
+                        {% for buy, sell in bought_sold %}
+                            <ul>
+                            <li>Buy: {{buy}}, Sold: {{sell}}</li>
+                            </ul>
+                        {% endfor %}
+                        {%else%}
+                        No stock selected
+                        {% endif %}
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end of second column -->
+    </div>
+    <!-- end of 1st row -->
+    <!-- second row -->
+    <div class="row text-center">
+        <!-- <img src="..." class="img-fluid" alt="No stock selected"> -->
+        {% if request.method == 'POST' %}
+            <img  class="img-fluid rounded-3" src="{{ url_for('static', filename=photo) }}" alt="No image resulted">
+        {% else %}
+            <p>No stock selected</p>
+        {% endif %}
+    </div>
+</div>
+{%endblock%}
