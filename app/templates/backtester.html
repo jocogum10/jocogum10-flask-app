@@ -18,6 +18,8 @@
                 <div class="form-floating">
                     <select name="strategy_selected" id="strategy-name" class="form-select"  aria-label="Floating label select example">
                         <option value="cross_up"{% if strategy == 'cross_up' %}selected="selected"{% endif %}>MA20 - MA 50 Cross Up</option>
+                        <option value="rsi"{% if strategy == 'rsi' %}selected="selected"{% endif %}>RSI Cross Up</option>
+                    </select>
                     </select>
                     <label for="strategy-name">Strategies</label>
                 </div>

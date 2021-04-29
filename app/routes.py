@@ -18,15 +18,18 @@ def backtester():
         stock_selected = strategies.load_stock(stock)
         if strategy == 'cross_up':
             strat = strategies.CrossUpStrategy(stock_selected)
-            return render_template('backtester.html', 
-                            list_stocks=list_stock,
-                            current_stock=stock, 
-                            strategy=strategy, 
-                            gain=strat.gain, 
-                            photo=strat.image_link, 
-                            bought_sold=strat.bought_sold,
-                            strategy_entry=strat.entry_strat,
-                            strategy_exit=strat.exit_strat)
+        elif strategy == 'rsi':
+            strat = strategies.RsiStrategy(stock_selected)
+            
+        return render_template('backtester.html', 
+                        list_stocks=list_stock,
+                        current_stock=stock, 
+                        strategy=strategy, 
+                        gain=strat.gain, 
+                        photo=strat.image_link, 
+                        bought_sold=strat.bought_sold,
+                        strategy_entry=strat.entry_strat,
+                        strategy_exit=strat.exit_strat)
     else:
         stock_selected = pd.DataFrame(columns=['Last','MA 20','MA 50','%K','RSI(14)','High','Low', '%D','MA 8'])
         return render_template('backtester.html', 
